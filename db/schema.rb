@@ -10,13 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170502192237) do
+ActiveRecord::Schema.define(version: 20170502195608) do
 
   enable_extension "plpgsql"
 
   create_table "customers", force: :cascade do |t|
     t.text     "first_name"
     t.text     "last_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "invoice_items", force: :cascade do |t|
+    t.integer  "item_id"
+    t.integer  "invoice_id"
+    t.integer  "quantity"
+    t.integer  "unit_price"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

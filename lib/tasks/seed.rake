@@ -19,48 +19,48 @@ class SeedOutput
     new(path).import_invoices
   end
 
+  def self.import_items(path)
+    new(path).import_invoices
+  end
+
   def import_merchants
     csv.each do |merchant|
-      new_merchant = Merchant.new(name:       merchant[:name],
-                                  created_at: merchant[:created_at],
-                                  updated_at: merchant[:updated_at])
-      if new_merchant.save
-        puts '.'
-      else
-        'Failed to create a merchant'
-      end
+      Merchant.create!(name:       merchant[:name],
+                       created_at: merchant[:created_at],
+                       updated_at: merchant[:updated_at])
     end
   end
 
   def import_transactions
     csv.each do |transaction|
-      new_transaction = Transaction.new(invoice_id:                  transaction[:invoice_id],
-                                        credit_cart_number:          transaction[:credit_card_number],
-                                        credit_card_expiration_date: transaction[:credit_cart_expiration_date],
-                                        result:                      transaction[:result],
-                                        created_at:                  transaction[:created_at],
-                                        updated_at:                  transaction[:updated_at])
+      Transaction.create!(invoice_id:                  transaction[:invoice_id],
+                          credit_cart_number:          transaction[:credit_card_number],
+                          credit_card_expiration_date: transaction[:credit_cart_expiration_date],
+                          result:                      transaction[:result],
+                          created_at:                  transaction[:created_at],
+                          updated_at:                  transaction[:updated_at])
 
-      if new_transaction.save
-        puts '.'
-      else
-        puts 'Failed to create a transaction'
-      end
     end
   end
 
   def import_invoices
     csv.each do |invoice|
-      new_invoice = Invoice.new(customer_id: invoice[:customer_id],
-                                merchant_id: invoice[:customer_id],
-                                status:      invoice[:status],
-                                created_at:  invoice[:created_at],
-                                updated_at:  invoice[:updated_at])
-      if new_invoice.save
-        puts '.'
-      else
-        puts 'Fails to create an invoice'
-      end
+      Invoice.create!(customer_id: invoice[:customer_id],
+                      merchant_id: invoice[:customer_id],
+                      status:      invoice[:status],
+                      created_at:  invoice[:created_at],
+                      updated_at:  invoice[:updated_at])
+    end
+  end
+
+  def import_items
+    csv.each do |item|
+      Item.create!(name: item[:name],
+                   description: item[:description],
+                   unit_price:  item[:unit_price],
+                   merchant_id: item[:merchant_id],
+                   created_at:  item[:created_at],
+                   updated_at:  item[:updated_at])
     end
   end
 end
@@ -70,5 +70,6 @@ namespace :seed do
     SeedOutput.import_merchants('db/csv/merchants.csv')
     SeedOutput.import_transactions('db/csv/transactions.csv')
     SeedOutput.import_invoices('db/csv/invoices.csv')
+    SeedOutput.import_items('db/csv/items.csv')
   end
 end

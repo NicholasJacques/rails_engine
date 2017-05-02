@@ -11,10 +11,10 @@ describe 'invoice_items API' do
     expect(invoice_items.count).to eq(3)
     expect(invoice_items.first['item_id']).to eq(invoice_item.item_id)
   end
-  xit 'can get one transacitem by its ID' do
+  it 'can get one invoiceitem by its ID' do
     id = create(:invoice_item).id
 
-    get "/api/v1/transacitems/#{id}"
+    get "/api/v1/invoice_items/#{id}"
     invoice_item = JSON.parse(response.body)
 
     expect(invoice_item['id']).to eq(id)

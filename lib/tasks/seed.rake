@@ -42,7 +42,7 @@ class SeedOutput
   def import_transactions
     csv.each do |transaction|
       Transaction.create!(invoice_id:                  transaction[:invoice_id],
-                          credit_cart_number:          transaction[:credit_card_number],
+                          credit_card_number:          transaction[:credit_card_number],
                           credit_card_expiration_date: transaction[:credit_cart_expiration_date],
                           result:                      transaction[:result],
                           created_at:                  transaction[:created_at],
@@ -101,5 +101,9 @@ namespace :seed do
     SeedOutput.import_items('db/csv/items.csv')
     SeedOutput.import_customers('db/csv/customers.csv')
     SeedOutput.import_invoice_items('db/csv/invoice_items.csv')
+  end
+
+  task :seed_merchants => :environment do
+    SeedOutput.import_merchants('db/csv/merchants.csv')
   end
 end

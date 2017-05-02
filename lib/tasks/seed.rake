@@ -7,7 +7,7 @@ class SeedOutput
     @csv = CSV.open "#{file_path}", headers: true, header_converters: :symbol
   end
 
-  def self.import_merchants(path='db/csv/merchants.csv')
+  def self.import_merchants(path)
     new(path).import_merchants
   end
 

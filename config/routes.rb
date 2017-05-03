@@ -22,7 +22,13 @@ Rails.application.routes.draw do
         get '/random', to: 'random#show'
       end
 
-      resources :invoice_items, only: [:index, :show]
+      resources :invoice_items, only: [:index, :show] do
+        scope module: :invoice_items do
+          resource :invoice, only: [:show]
+
+        end
+      end
+
 
       namespace :customers do
         get '/find', to: 'find#show'

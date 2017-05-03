@@ -29,7 +29,6 @@ Rails.application.routes.draw do
         end
       end
 
-
       namespace :customers do
         get '/find', to: 'find#show'
         get 'find_all', to: 'find#index'
@@ -44,7 +43,11 @@ Rails.application.routes.draw do
         get '/random', to: 'random#show'
       end
 
-      resources :items, only: [:index, :show]
+      resources :items, only: [:index, :show] do
+        scope module: :items do
+          resources :invoice_items, only: [:index]
+        end
+      end
 
       namespace :invoices do
         get '/find', to: 'find#show'

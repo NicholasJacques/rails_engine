@@ -12,7 +12,7 @@ describe 'Invoice_Items Relationships API' do
     expect(returned_invoice).to be_a(Hash)
     expect(returned_invoice["id"]).to eq(invoice.id)
   end
-  it 'can return the asscoiated item' do 
+  it 'can return the associated item' do 
     invoice_item = create(:invoice_item)
     item = invoice_item.item
 

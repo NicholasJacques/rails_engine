@@ -13,8 +13,11 @@ describe 'Invoice Find API' do
   end
 
   it 'finds all invoices by any associated attributes' do
-    invoice_1, invoice_2 = create_list(:invoice, 2)
-    invoice_3 = create(:invoice, merchant_id: 86)
+    merchant1 = create(:merchant)
+    merchant2 = create(:merchant)
+
+    invoice_1, invoice_2 = create_list(:invoice, 2, merchant: merchant2)
+    invoice_3 = create(:invoice, merchant: merchant1)
     merchant_identifier = invoice_1.merchant_id
 
     get "/api/v1/invoices/find_all?merchant_id=#{merchant_identifier}"

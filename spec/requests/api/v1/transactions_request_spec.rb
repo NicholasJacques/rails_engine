@@ -9,7 +9,7 @@ describe 'transactions API' do
 
     expect(response).to be_success
     expect(transactions.count).to eq(3)
-    expect(transactions.first['credit_cart_number']).to eq('4654405418249632')
+    expect(transactions.first['credit_card_number']).to eq('4654405418249632')
   end
   it 'can get one transaction by its ID' do
     id = create(:transaction).id

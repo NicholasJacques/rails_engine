@@ -62,4 +62,15 @@ describe 'Invoices Relationships Api' do
     expect(returned_customer).to be_a(Hash)
     expect(returned_customer["id"]).to eq(customer.id)
   end
+  it 'can return a merchant associated with that invoice' do 
+    merchant = create(:merchant)
+    invoice = create(:invoice, merchant: merchant)
+
+    get "/api/v1/invoices/#{invoice.id}/merchant"
+    returned_merchant = JSON.parse(response.body)
+    expect(response).to be_success
+    expect(returned_merchant).to be_a(Hash)
+    expect(returned_merchant["id"]).to eq(merchant.id)
+
+  end
 end

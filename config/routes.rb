@@ -34,8 +34,12 @@ Rails.application.routes.draw do
         get 'find_all', to: 'find#index'
         get '/random', to: 'random#show'
       end
-
-      resources :customers, only: [:index, :show]
+ 
+      resources :customers, only: [:index, :show] do
+        scope module: :customers do 
+          resources :invoices, only: [:index]
+        end
+      end
 
       namespace :items do
         get '/find', to: 'find#show'
@@ -72,7 +76,11 @@ Rails.application.routes.draw do
         get '/random', to: 'random#show'
       end
 
-      resources :transactions, only: [:index, :show]
+      resources :transactions, only: [:index, :show] do
+        scope module: :transactions do
+          resource :invoice, only: [:show]
+        end
+      end
     end
   end
 end

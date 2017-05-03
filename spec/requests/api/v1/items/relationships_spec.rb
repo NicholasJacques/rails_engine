@@ -16,4 +16,16 @@ describe 'Items Relationships API' do
     expect(returned_invoice_item["id"]).to eq(invoice_item.id)
 
   end
+  it 'returns the merchant associated with that item' do 
+    item = create(:item)
+    merchant = item.merchant
+
+    get "/api/v1/items/#{item.id}/merchant"
+    returned_merchant = JSON.parse(response.body)
+
+    expect(response).to be_success
+    expect(returned_merchant).to be_a(Hash)
+    expect(returned_merchant["id"]).to eq(merchant.id)
+  
+  end
 end

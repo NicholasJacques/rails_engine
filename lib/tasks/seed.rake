@@ -95,11 +95,14 @@ end
 
 namespace :seed do
   task :seed_all => :environment do
+    DatabaseCleaner.strategy = :truncation
+    DatabaseCleaner.clean
+    
     SeedOutput.import_merchants('db/csv/merchants.csv')
+    SeedOutput.import_customers('db/csv/customers.csv')
     SeedOutput.import_invoices('db/csv/invoices.csv')
     SeedOutput.import_transactions('db/csv/transactions.csv')
     SeedOutput.import_items('db/csv/items.csv')
-    SeedOutput.import_customers('db/csv/customers.csv')
     SeedOutput.import_invoice_items('db/csv/invoice_items.csv')
   end
 

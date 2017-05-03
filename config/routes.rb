@@ -25,7 +25,7 @@ Rails.application.routes.draw do
       resources :invoice_items, only: [:index, :show] do
         scope module: :invoice_items do
           resource :invoice, only: [:show]
-
+          resource :item, only: [:show]
         end
       end
 

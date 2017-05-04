@@ -14,7 +14,7 @@ describe "merchants ranked by items sold endpoint" do
   let!(:invoice_item_2) { create(:invoice_item, invoice: invoice_2, quantity: 25) }
   let!(:invoice_item_3) { create(:invoice_item, invoice: invoice_3, quantity: 10) }
 
-  it "returns top x merchants sorted by items sold" do
+  it 'returns top x merchants sorted by items sold' do
     get '/api/v1/merchants/most_items?quantity=2'
     returned_merchants = JSON.parse(response.body)
 

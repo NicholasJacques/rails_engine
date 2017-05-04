@@ -16,6 +16,8 @@ gem 'puma', '~> 3.0'
 # gem 'jbuilder', '~> 2.5'
 # JSON API Serializers
 gem 'active_model_serializers', '~> 0.10.0'
+
+gem 'simplecov', :require => false, :group => :test
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password

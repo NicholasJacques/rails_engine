@@ -9,13 +9,14 @@ Rails.application.routes.draw do
         get '/random',       to: 'random#show'
         get '/most_revenue', to: 'most_revenue#index'
         get '/most_items',   to: 'most_items#index'
-        get '/revenue',      to: 'revenue#show'
+        get '/revenue',      to: 'date_revenue#show'
       end
 
       resources :merchants, only: [:index, :show] do
         scope module: :merchants do
           resources :items, only: [:index]
           resources :invoices, only: [:index]
+          get "/revenue", to: "revenue#show"
         end
       end
 

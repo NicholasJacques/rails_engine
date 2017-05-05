@@ -10,6 +10,13 @@ class Merchant < ApplicationRecord
       .sum('quantity * unit_price')
   end
 
+  def date_revenue(date)
+    invoice_items
+      .merge(InvoiceItem.success)
+      .merge(Invoice.select_date(date))
+      .sum('quantity * unit_price')
+  end
+
   def self.most_revenue(quantity)
     joins(:invoice_items)
       .merge(InvoiceItem.success)
@@ -32,4 +39,5 @@ class Merchant < ApplicationRecord
       .order('sum(invoice_items.quantity) DESC')
       .limit(quantity)
   end
+
 end

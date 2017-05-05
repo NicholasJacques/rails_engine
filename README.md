@@ -23,8 +23,8 @@ git clone https://github.com/NicholasJacques/rails_engine.git
 
 Navigate into the project by running the commands:
 ```
-ls 
-cd rails_engine (navigates into the directory)
+ls (see the name of project directory
+cd rails_engine (navigates into the project)
 ```
 
 Install required gems:
@@ -34,8 +34,7 @@ bundle
 
 Create, migrate, and seed the database:
 ```
-rake db:create
-rake db:migrate
+rake db:setup
 
 rake seed:seed_all
 

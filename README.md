@@ -40,7 +40,7 @@ rake seed:seed_all
 
 ```
 
-Testing: Run the command `rspec` in the terminal/shell 
+Testing: Run the command `rspec` in the terminal/shell                                                                          
 If you would like to run this project against the Turing Rails Engine Spec Harness visit:  
 
 https://github.com/turingschool/rales_engine_spec_harness 

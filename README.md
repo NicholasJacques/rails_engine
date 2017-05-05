@@ -4,7 +4,7 @@
 
 ## Introduction:
 
-This is a paired-project on learning how to build an API. The data analysis uses sales data. Format: JSON API endpoints. 
+This is a paired-project on learning how to build an API. The data used is SalesEngine data. ActiveRecord queries, RSpec testing, Postgres database, using a Rails application. Format: JSON API endpoints. 
 
 Rails Engine Project Spec Requirements: [here](http://backend.turing.io/module3/projects/rails_engine)
 
@@ -21,24 +21,27 @@ Clone this repo in your terminal/shell:
 git clone https://github.com/NicholasJacques/rails_engine.git
 ```
 
-Navigate into the project:
+Navigate into the project by running the commands:
 ```
-cd rails_engine
+ls 
+cd rails_engine (navigates into the directory)
 ```
 
 Install required gems:
 ```
-bundle install
+bundle 
 ```
 
 Create, migrate, and seed the database:
 ```
 rake db:create
 rake db:migrate
-rake db:seed
+
+rake seed:seed_all
+
 ```
 
-Testing: Run `rspec` in the terminal/shell 
+Testing: Run the command `rspec` in the terminal/shell 
 
 ## Endpoints
 You can visit these endpoints to see a JSON response.
@@ -50,6 +53,10 @@ In a browser address bar navigate to: `localhost:3000`
 ### Record Endpoints
 
 #### Merchants
+
+Once localhost:3000 is running in the browse, you can navigate to the record endpoints by appending the routes below.
+For example, for the first route below, navigate to localhost:3000/api/v1/merchants to view. You will see JSON output, and in order to view this in a more readable format: you can install a JSON Formatter (browser plugin) to have the JSON output printed in a more readable format. 
+
 - **<code>GET</code> /api/v1/merchants**
 - **<code>GET</code> /api/v1/merchants/:id**
 - **<code>GET</code> /api/v1/merchants/random**
@@ -125,9 +132,7 @@ In a browser address bar navigate to: `localhost:3000`
 
 #### Items
 
-- **<code>GET</code> /api/v1/items/most_revenue?quantity=x** returns the top x items ranked by total revenue generated
 - **<code>GET</code> /api/v1/items/most_items?quantity=x** returns the top x item instances ranked by total number sold
-- **<code>GET</code> /api/v1/items/:id/best_day** returns the date with the most sales for the given item using the invoice date. If there are multiple days with equal number of sales, return the most recent day.
 
 #### Customers
 

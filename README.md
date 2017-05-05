@@ -41,6 +41,18 @@ rake seed:seed_all
 ```
 
 Testing: Run the command `rspec` in the terminal/shell 
+If you would like to run this project against the Turing Rails Engine Spec Harness visit:  
+
+https://github.com/turingschool/rales_engine_spec_harness 
+
+And follow the instructions. The truncated instructions to quickly get it up and running:
+```
+git clone https://github.com/turingschool/rales_engine_spec_harness.git
+cd rales_engine_spec_harness
+bundle
+rake test
+ 
+```
 
 ## Endpoints
 You can visit these endpoints to see a JSON response.

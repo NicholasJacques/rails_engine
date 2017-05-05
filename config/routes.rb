@@ -16,6 +16,7 @@ Rails.application.routes.draw do
         scope module: :merchants do
           resources :items, only: [:index]
           resources :invoices, only: [:index]
+          get "/favorite_customer", to: "favorite_customer#show"
           get "/revenue", to: "revenue#show"
         end
       end
@@ -37,12 +38,14 @@ Rails.application.routes.draw do
         get '/find', to: 'find#show'
         get 'find_all', to: 'find#index'
         get '/random', to: 'random#show'
+
       end
  
       resources :customers, only: [:index, :show] do
         scope module: :customers do 
           resources :invoices, only: [:index]
           resources :transactions, only: [:index]
+          get "/favorite_merchant", to: "favorite_merchant#show"
         end
       end
 
@@ -50,6 +53,7 @@ Rails.application.routes.draw do
         get '/find', to: 'find#show'
         get 'find_all', to: 'find#index'
         get '/random', to: 'random#show'
+        get '/most_items', to: 'most_items#index'
       end
 
       resources :items, only: [:index, :show] do

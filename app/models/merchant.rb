@@ -3,6 +3,7 @@ class Merchant < ApplicationRecord
   has_many :invoices
   has_many :transactions, through: :invoices
   has_many :invoice_items, through: :invoices
+  has_many :customers, through: :invoices
 
   def revenue
     invoice_items
@@ -38,6 +39,14 @@ class Merchant < ApplicationRecord
       .group(:id)
       .order('sum(invoice_items.quantity) DESC')
       .limit(quantity)
+  end
+
+  def self.favorite_customer(id)
+    Merchant.find(id.to_i).customers.joins(:transactions)
+    .merge(Transaction.success)
+    .group("customers.id")
+    .order("count(transactions.result) DESC")
+    .take
   end
 
 end
